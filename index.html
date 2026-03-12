@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicting Alcohol Consumption</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Global Alcohol Consumption Analysis</h1>        
+        
+        <div class="infographic-section">
+            <h2>Data Insights</h2>
+            <img src="/static/images/infographic.png" alt="Beer Servings by Continent" style="width:100%; max-width:400px; border-radius: 8px;">
+            <p>This is a simple analysis to show how total litres of pure alcohol intake happens across different continents.</p>
+        </div>
+
+        <hr>
+
+        <!-- Prediction Form -->
+        <div class="form-section">
+            <h2>Predict Pure Alcohol in Litres</h2>
+            <form action="/predict" method="post">
+                <div class="input-group">
+                    <label>Beer Servings:</label>
+                    <input type="number" name="beer_servings" step="0.1" placeholder="e.g. 100" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Spirit Servings:</label>
+                    <input type="number" name="spirit_servings" step="0.1" placeholder="e.g. 50" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Wine Servings:</label>
+                    <input type="number" name="wine_servings" step="0.1" placeholder="e.g. 20" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Continent:</label>
+                    <select name="continent" required>
+                        <option value="" disabled selected>Select Continent</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="North America">North America</option>
+                        <option value="Oceania">Oceania</option>
+                        <option value="South America">South America</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Calculate</button>
+            </form>
+
+            <!-- Display Result -->
+            {% if prediction_text %}
+            <div class="result">
+                <h3>{{ prediction_text }}</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
